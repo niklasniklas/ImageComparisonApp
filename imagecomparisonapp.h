@@ -2,6 +2,7 @@
 #define IMAGECOMPARISONAPP_H
 
 #include <QtWidgets/QMainWindow>
+#include "ComparisonWidget6.h"
 
 
 class ImageComparisonApp : public QMainWindow
@@ -13,7 +14,7 @@ public:
 	~ImageComparisonApp();
 
 private:
-
+	ComparisonWidget6* questioned;
 };
 
 #endif // IMAGECOMPARISONAPP_H

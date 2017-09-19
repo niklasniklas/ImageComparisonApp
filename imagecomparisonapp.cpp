@@ -1,9 +1,10 @@
 #include "imagecomparisonapp.h"
 
 ImageComparisonApp::ImageComparisonApp()
-	//: textEdit(new QTextEdit)
 {
-	//setCentralWidget(textEdit);
+	questioned = new ComparisonWidget6(this);
+	setCentralWidget(questioned);
+	setMinimumSize(500, 500);
 }
 
 ImageComparisonApp::~ImageComparisonApp()
