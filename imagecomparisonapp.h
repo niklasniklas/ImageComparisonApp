@@ -13,8 +13,11 @@ public:
 	ImageComparisonApp();
 	~ImageComparisonApp();
 
+private slots:
+	void but1Clicked(void);
+
 private:
-	ComparisonWidget6* questioned;
+	ComparisonWidget6* OneOfSixWidget;
 };
 
 #endif // IMAGECOMPARISONAPP_H
