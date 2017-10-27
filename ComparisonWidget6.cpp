@@ -204,7 +204,7 @@ void ComparisonWidget6::noseClicked(void)
 	std::string cascade_name = "C:\\1.Dep\\haarcascades\\new\\Nariz.xml"; 
 //-	std::string cascade_name = "C:\\1.Dep\\haarcascades\\new\\Mouth.xml"; 
 	detectAndDisplay(img, cascade_name);
-}
+} 
 
 void ComparisonWidget6::detectAndDisplay(cv::Mat frame, std::string cascade_name)
 {
