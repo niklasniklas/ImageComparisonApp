@@ -2,7 +2,7 @@
 
 
 
-GlasgowTest::GlasgowTest()
+GlasgowTest::GlasgowTest(int no)
 {
 }
 

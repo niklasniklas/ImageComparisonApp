@@ -2,7 +2,11 @@
 class GlasgowTest
 {
 public:
-	GlasgowTest();
+	GlasgowTest(int no);
 	~GlasgowTest();
+
+private:
+	int _no_of_comparisons;
+
 };
 
