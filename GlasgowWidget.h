@@ -18,8 +18,18 @@ public:
 	virtual void widgetClicked(int no);
 	void setDifficulty(int no);
 
+private slots:
+	void btn1Clicked(void);
+	void btn2Clicked(void);
+
 private:
+	void resizeEvent(QResizeEvent * event);
+	void mouseEvent(QMouseEvent* event);
+
 	int _difficulty;  // between 1-10
+	QList<CVImageWidget *>	imgWgts;
+	QList<QScrollArea *>	imgScroll;
+
 };
 
 #endif
