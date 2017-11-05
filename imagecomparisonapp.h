@@ -3,6 +3,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ComparisonWidget6.h"
+#include "GlasgowWidget.h"
 
 
 class ImageComparisonApp : public QMainWindow
@@ -15,9 +16,11 @@ public:
 
 private slots:
 	void but1Clicked(void);
+	void but2Clicked(void);
 
 private:
 	ComparisonWidget6* OneOfSixWidget;
+	GlasgowWidget*		glasgowWidget;
 };
 
 #endif // IMAGECOMPARISONAPP_H

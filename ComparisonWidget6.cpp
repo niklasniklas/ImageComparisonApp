@@ -3,11 +3,12 @@
 #include <qpushbutton.h>
 #include <qmessagebox.h>
 #include <qgroupbox.h>
+#include <QMouseEvent>
 
 
 
 ComparisonWidget6::ComparisonWidget6(QWidget *parent)
-	: QWidget(parent)
+	: ComparisonWidget_generic(parent)
 {
 	//http://doc.qt.io/qt-5/qtwidgets-widgets-groupbox-window-cpp.html
 	//http://www.qtforum.org/article/36854/adding-widgets-to-groupbox-that-is-in-a-main-layout.html
@@ -18,7 +19,7 @@ ComparisonWidget6::ComparisonWidget6(QWidget *parent)
 	QGroupBox* refGroup = new QGroupBox("Reference");
 	QVBoxLayout* refLayout = new QVBoxLayout();
 
-	refWgt = new CVImageWidget();
+	refWgt = new CVImageWidget(this,0);
 	refWgt->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	refScroll = new QScrollArea();
 	refScroll->setWidget(refWgt);
@@ -39,7 +40,7 @@ ComparisonWidget6::ComparisonWidget6(QWidget *parent)
 
 	// Create CVImage widgets w scollarea
 	for (int i = 0; i < 6; i++) {
-		CVImageWidget* tmp1 = new CVImageWidget();
+		CVImageWidget* tmp1 = new CVImageWidget(this,i+1);
 		tmp1->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 		questWgts.append(tmp1);
 
@@ -130,13 +131,15 @@ void ComparisonWidget6::resize(cv::Mat& _tmp, const cv::Mat& img, int wgtNo)
 
 void ComparisonWidget6::runClicked(void)
 {
-	cv::Mat img = cv::imread("C:\\2.Testdata\\Bilder\\boldt.jpg");
+	cv::Mat img = cv::imread("C:\\Testdata\\mtDatabas\\ID nr(5).jpg");
 
 	for (int i = 0; i < questWgts.size(); i++) {
 		showImage(img, i);
 		//questWgts[i]->showImage(img);
 	}
 	int a = questWgts.size();
+
+	
 
 	//QMessageBox msgBox;
 	//msgBox.setText("Prev");
@@ -176,6 +179,15 @@ void ComparisonWidget6::resizeEvent(QResizeEvent* event)
 
 }
 
+void ComparisonWidget6::mouseEvent(QMouseEvent * event)
+{
+	if (event->type() == QMouseEvent::MouseButtonPress)
+		int a = 0;
+
+	// do anything....
+	QWidget::mousePressEvent(event);
+}
+
 
 void ComparisonWidget6::showImage(cv::Mat img, QScrollArea *tmpScroll)
 {
@@ -184,10 +196,19 @@ void ComparisonWidget6::showImage(cv::Mat img, QScrollArea *tmpScroll)
 	((CVImageWidget*)tmpScroll->widget())->showImage(_tmp);
 }
 
+void ComparisonWidget6::widgetClicked(int no)
+{
+	int a = 0;
+	
+	cv::Mat tmp = cv::imread("C:\\Testdata\\mtDatabas\\ID nr(4).jpg");
+
+	showImage(tmp, no-1);
+}
+
 
 void ComparisonWidget6::run2Clicked(void)
 {
-	cv::Mat img = cv::imread("C:\\2.Testdata\\Bilder\\mtDatabas\\ID nr(1).bmp");
+	cv::Mat img = cv::imread("C:\\Testdata\\mtDatabas\\ID nr(5).jpg");
 	showImage(img, refScroll);
 	//((CVImageWidget*)refScroll->widget())->showImage(img);
 	//refWgt->showImage(img);
@@ -196,8 +217,8 @@ void ComparisonWidget6::run2Clicked(void)
 void ComparisonWidget6::noseClicked(void)
 {
 	ii++;
-	std::string filename = "C:\\2.Testdata\\Bilder\\mtDatabas\\ID nr(" + ii;
-	cv::Mat img = cv::imread("C:\\2.Testdata\\Bilder\\mtDatabas\\ID nr(1).bmp");
+	std::string filename = "C:\\Testdata\\mtDatabas\\ID nr(" + ii;
+	cv::Mat img = cv::imread("C:\\Testdata\\mtDatabas\\ID nr(5).jpg");
 
 //	std::string cascade_name = "C:\\1.Dep\\haarcascades\\haarcascade_frontalface_alt_tree.xml";
 //	std::string cascade_name = "C:\\1.Dep\\haarcascades\\haarcascade_eye_tree_eyeglasses.xml";

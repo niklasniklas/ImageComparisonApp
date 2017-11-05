@@ -4,8 +4,9 @@
 #include <qwidget.h>
 #include <cvimagewidget.h>
 #include <qscrollarea.h>
+#include <ComparisonWidget_generic.h>
 
-class ComparisonWidget6 :	public QWidget
+class ComparisonWidget6 :	public ComparisonWidget_generic
 {
 	Q_OBJECT
 
@@ -15,6 +16,8 @@ public:
 
 	void showImage(cv::Mat img, int wgtNo);
 	void showImage(cv::Mat img, QScrollArea *tmpScroll);
+
+	virtual void widgetClicked(int no);
 
 private slots:
 	void runClicked(void);
@@ -28,6 +31,7 @@ private:
 
 //events
 	void resizeEvent(QResizeEvent * event);
+	void mouseEvent(QMouseEvent* event);
 
 	CVImageWidget*			refWgt;
 	QScrollArea*			refScroll;

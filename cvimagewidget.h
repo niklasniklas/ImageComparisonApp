@@ -5,12 +5,19 @@
 #include <QImage>
 #include <QPainter>
 #include <opencv2/opencv.hpp>
+//#include <ComparisonWidget_generic.h>
+
+class ComparisonWidget_generic;
 
 class CVImageWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CVImageWidget(QWidget *parent = 0) : QWidget(parent) {
+    CVImageWidget(QWidget* parent, int id) : QWidget(parent) {
+		_parent = (ComparisonWidget_generic*)(parent);
+//		_parent = dynamic_cast<ComparisonWidget_generic*>(parent);
+//		_parent = parent;
+		_id = id;
         setMouseTracking(true);
     }
 
@@ -54,6 +61,9 @@ protected:
 
     QImage _qimage;
     cv::Mat _tmp;
+
+	int _id;
+	ComparisonWidget_generic* _parent;
 
 };
 
